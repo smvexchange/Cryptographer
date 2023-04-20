@@ -5,11 +5,6 @@ int input_operation()
 	std::cout << "Enter the operation number(1 - encodind, 2 - decoding, 3 - quit): ";
 	int operation;
 	std::cin >> operation;
-	while (operation < 1 && operation > 3)
-	{
-		std::cout << "Wrong operation. Try again: ";
-		std::cin >> operation;
-	}
 	return operation;
 }
 
@@ -31,6 +26,7 @@ char* input_text(int text_length)
 		++index;
 	}
 	return text;
+	delete[] text;
 }
 
 int input_offset()
@@ -72,25 +68,29 @@ void print_text(char* text, int text_length) {
 		std::cout << text[i];
 	}
 	std::cout << "\"" << std::endl;
-	std::cout << "******************" << std::endl;
+	std::cout << "*******************************************************************" << std::endl;
 }
 
 int main()
 {
 	while (true) {
-		int opetarion = input_operation();
-		if (opetarion == 3)
-		{
+		int operation;
+		operation = input_operation();
+		if (operation == 3)
+		{	
 			break;
 		}
-		int text_length = input_length();
-		char *text = input_text(text_length);
-		int offset = input_offset();
-		if (opetarion == 1)
-		{	
+		int text_length;
+		text_length = input_length();
+		char* text = nullptr;
+		text = input_text(text_length);
+		int offset;
+		offset = input_offset();
+		if (operation == 1)
+		{
 			encoding(text, text_length, offset);
 		}
-		else if (opetarion == 2)
+		else if (operation == 2)
 		{
 			decoding(text, text_length, offset);
 		}
