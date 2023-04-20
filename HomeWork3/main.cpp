@@ -96,4 +96,5 @@ int main()
 		}
 		print_text(text, text_length);
 	}
+	return 0;
 }
